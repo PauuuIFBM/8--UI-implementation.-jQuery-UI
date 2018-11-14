@@ -34,8 +34,52 @@
       }
 
       /* Step 2: Your CSS code goes here */
+      #selectable .ui-selecting {
+      background: #FECA40;
+      }
+      #selectable .ui-selected {
+        background: #F39814; color: white;
+      }
+      #selectable li:before {
+        content: "\2713 ";
+        color: transparent;
+      }
+      #selectable li.ui-selecting:before {
+        content: "\2713 ";
+        color: black;
+      }
+      #selectable li.ui-selected:before {
+        content: "\2713 ";
+        color: white;
+      }
+      #selectable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 600px;
+        cursor: pointer;
+      }
+      #selectable li {
+        margin: 3px;
+        padding: 0.4em;
+        font-size: 1.0em;
+        height: 16px;
+      }
 
       /* Step 3: Your CSS code goes here */
+      #sortable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 150px;
+      }
+      #sortable li {
+        margin: 0 3px 3px 3px;
+        padding: 0.4em;
+        padding-left: 1.5em;
+        font-size: 1.0em;
+        height: 12px;
+      }
 
       /* Step 4: Your CSS code goes here */
 
@@ -45,12 +89,15 @@
     $(document).ready(function () {
 
       /* Step 1: Your code goes here */
-      $("#date").datepicker({minDate:-14, maxDate: 14});
+      $("#date").datepicker({ minDate: -14, maxDate: 14 });
 
-      
       /* Step 2: Your js code goes here */
+      $("#selectable").selectable();
+      $(".ui-selected").text()
 
       /* Step 3: Your js code goes here */
+      $("#sortable").disableSelection();
+      $("#sortable").sortable();
 
       /* Step 4: Your js code goes here */
 
@@ -75,13 +122,10 @@
     <h3>Are you enrolled in DAM or DAW?</h3>
 
     <!-- Comment out this part of the form after Step 2 -->
-    <input type="radio" name="enroll_year" id="ugrad" value="ugrad">
-    <label for="ugrad">DAM (taking Interface Development)</label>
-    
-    <br>
-
-    <input type="radio" name="enroll_year" id="grad" value="grad">
-    <label for="grad">DAW (taking Interface Web Development)</label>
+    <ol id="selectable">
+      <li class="ui-widget-content">DAM (taking Interface Development)</li>
+      <li class="ui-widget-content">DAW (taking Interface Web Development)</li>
+    </ol>
 
     <!-- Step 2: Your HTML here -->
   </div>
@@ -91,16 +135,13 @@
     <h3>Rank the colors listed from your most favorite (1)
       to your least favorite (5). Be sure to only use each ranking once.</h3>
     <!-- Comment this part of the form out after step 3 -->
-    <input type="text" class="rank_color" id="red">
-    <label for="red">#ff0000</label><br />
-    <input type="text" class="rank_color" id="blue">
-    <label for="blue">#0000ff</label><br />
-    <input type="text" class="rank_color" id="hot_pink">
-    <label for="hot_pink">#ff00b3</label><br />
-    <input type="text" class="rank_color" id="mustard">
-    <label for="mustard">#ded447</label><br />
-    <input type="text" class="rank_color" id="dark_green">
-    <label for="dark_green">#125e18</label><br />
+    <ul id="sortable">
+      <li class="ui-state-default">#ff0000</li>
+      <li class="ui-state-default">#0000ff</li>
+      <li class="ui-state-default">#ff00b3</li>
+      <li class="ui-state-default">#ded447</li>
+      <li class="ui-state-default">#125e18</li>
+    </ul>
 
     <!-- Step 3: Your HTML here -->
     <!-- Uncomment instruction when you finish step 3 -->
