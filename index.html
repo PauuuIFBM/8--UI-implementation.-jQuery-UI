@@ -81,7 +81,18 @@
         height: 12px;
       }
 
+      #sortable li span {
+      position: absolute;
+      margin-left: -1.3em;
+      }
+
       /* Step 4: Your CSS code goes here */
+      .color_swatch{
+       height: 50px;
+       width: 50px;
+      }
+     
+}
 
     </style>
 
@@ -100,6 +111,28 @@
       $("#sortable").sortable();
 
       /* Step 4: Your js code goes here */
+      $(document).tooltip({
+        /*
+           An item in brackets refers to taking all elements with the attribute in brackets, while
+           an item not in brackets refers to taking all elements of that type (ex: 'img', 'a')
+        */
+        items: "[title], [class]",
+        content: function () {
+          // jQuery uses "this" to refer to the element that triggered the event
+          var element = $(this);
+          if (element.is("[title]")) {
+            return element.attr("title");
+          }
+          
+          if (element.is("[class]")) {
+            if (element.hasClass("ui-state-default")) {
+              var text = element.text(); //in this case, will be the desired color
+              return "<div class='color_swatch' style='background:" + text + "'></div>";
+            }
+          }
+        }
+      });
+
 
     });
   </script>
@@ -123,8 +156,10 @@
 
     <!-- Comment out this part of the form after Step 2 -->
     <ol id="selectable">
-      <li class="ui-widget-content">DAM (taking Interface Development)</li>
-      <li class="ui-widget-content">DAW (taking Interface Web Development)</li>
+      <li class="ui-widget-content" title="taking 6.813, doesn't have to do RS assignments">DAM (taking Interface
+        Development)</li>
+      <li class="ui-widget-content" title="taking 6.831, required to do RS assignments">DAW (taking Interface Web
+        Development)</li>
     </ol>
 
     <!-- Step 2: Your HTML here -->
@@ -136,11 +171,11 @@
       to your least favorite (5). Be sure to only use each ranking once.</h3>
     <!-- Comment this part of the form out after step 3 -->
     <ul id="sortable">
-      <li class="ui-state-default">#ff0000</li>
-      <li class="ui-state-default">#0000ff</li>
-      <li class="ui-state-default">#ff00b3</li>
-      <li class="ui-state-default">#ded447</li>
-      <li class="ui-state-default">#125e18</li>
+      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>#ff0000</li>
+      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>#0000ff</li>
+      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>#ff00b3</li>
+      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>#ded447</li>
+      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>#125e18</li>
     </ul>
 
     <!-- Step 3: Your HTML here -->
